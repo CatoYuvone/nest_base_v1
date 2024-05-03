@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { dbSettings } from 'settings';
+import { join } from 'path';
 
 @Module({
   imports: [
@@ -13,7 +14,7 @@ import { dbSettings } from 'settings';
       port: dbSettings.PORT,
       username: dbSettings.USER,
       password: dbSettings.PASSWORD,
-      entities: [],
+      entities: [join(__dirname,"**/*.entity{.ts,.js}")],
       database: dbSettings.DATABASE,
       synchronize: true,
       logging: true,
